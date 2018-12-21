@@ -4,7 +4,7 @@ A plugin to create a managed secret in AWS SecretsManager for the [slackbot](htt
 
 ## Usage
 
-```terraform
+```hcl
 module slackbot_secret {
   source                  = "amancevice/slackbot-secrets/aws"
   kms_key_alias           = "alias/slack/your-kms-key-alias"
