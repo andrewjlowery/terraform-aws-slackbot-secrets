@@ -81,6 +81,11 @@ variable slack_client_secret {
   description = "Slack Client Secret."
 }
 
+variable slack_legacy_token {
+  description = "Slack legacy access token."
+  default     = ""
+}
+
 variable slack_signing_secret {
   description = "Slack signing secret."
 }
