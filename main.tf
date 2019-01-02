@@ -1,12 +1,12 @@
 locals {
   secrets {
-    BOT_ACCESS_TOKEN  = "${var.slack_bot_access_token}"
-    CLIENT_ID         = "${var.slack_client_id}"
-    CLIENT_SECRET     = "${var.slack_client_secret}"
-    LEGACY_TOKEN      = "${var.slack_legacy_token}"
-    SIGNING_SECRET    = "${var.slack_signing_secret}"
-    SIGNING_VERSION   = "${var.slack_signing_version}"
-    USER_ACCESS_TOKEN = "${var.slack_user_access_token}"
+    BOT_TOKEN       = "${var.slack_bot_access_token}"
+    CLIENT_ID       = "${var.slack_client_id}"
+    CLIENT_SECRET   = "${var.slack_client_secret}"
+    LEGACY_TOKEN    = "${var.slack_legacy_token}"
+    SIGNING_SECRET  = "${var.slack_signing_secret}"
+    SIGNING_VERSION = "${var.slack_signing_version}"
+    USER_TOKEN      = "${var.slack_user_access_token}"
   }
 }
 
