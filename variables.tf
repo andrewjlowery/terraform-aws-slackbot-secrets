@@ -74,11 +74,11 @@ variable slack_bot_token {
 }
 
 variable slack_client_id {
-  description = "Slack Client ID."
+  description = "Slack client ID."
 }
 
 variable slack_client_secret {
-  description = "Slack Client Secret."
+  description = "Slack client secret."
 }
 
 variable slack_legacy_token {
