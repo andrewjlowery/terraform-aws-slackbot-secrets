@@ -69,8 +69,10 @@ variable secret_tags {
   default     = {}
 }
 
-variable slack_bot_token {
-  description = "Slack bot OAuth token."
+variable secrets {
+  description = "Additional SecretsManager secrets."
+  type        = "map"
+  default     = {}
 }
 
 variable slack_client_id {
@@ -81,8 +83,8 @@ variable slack_client_secret {
   description = "Slack client secret."
 }
 
-variable slack_legacy_token {
-  description = "Slack legacy OAuth token."
+variable slack_oauth_redirect_uri {
+  description = "Slack OAuth redirect URI."
   default     = ""
 }
 
@@ -95,7 +97,6 @@ variable slack_signing_version {
   default     = "v0"
 }
 
-variable slack_user_token {
-  description = "Slack user OAuth token."
-  default     = ""
+variable slack_token {
+  description = "Slack bot OAuth token."
 }

@@ -1,12 +1,11 @@
 locals {
   secrets {
-    BOT_TOKEN       = "${var.slack_bot_token}"
-    CLIENT_ID       = "${var.slack_client_id}"
-    CLIENT_SECRET   = "${var.slack_client_secret}"
-    LEGACY_TOKEN    = "${var.slack_legacy_token}"
-    SIGNING_SECRET  = "${var.slack_signing_secret}"
-    SIGNING_VERSION = "${var.slack_signing_version}"
-    USER_TOKEN      = "${var.slack_user_token}"
+    SLACK_CLIENT_ID          = "${var.slack_client_id}"
+    SLACK_CLIENT_SECRET      = "${var.slack_client_secret}"
+    SLACK_OAUTH_REDIRECT_URI = "${var.slack_oauth_redirect_uri}"
+    SLACK_SIGNING_SECRET     = "${var.slack_signing_secret}"
+    SLACK_SIGNING_VERSION    = "${var.slack_signing_version}"
+    SLACK_TOKEN              = "${var.slack_token}"
   }
 }
 
@@ -37,5 +36,5 @@ resource aws_secretsmanager_secret slack_secret {
 
 resource aws_secretsmanager_secret_version slack_secret_version {
   secret_id     = "${aws_secretsmanager_secret.slack_secret.id}"
-  secret_string = "${jsonencode(local.secrets)}"
+  secret_string = "${jsonencode(merge(var.secrets, local.secrets))}"
 }
