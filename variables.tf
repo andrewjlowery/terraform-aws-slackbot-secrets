@@ -83,9 +83,19 @@ variable slack_client_secret {
   description = "Slack client secret."
 }
 
+variable slack_oauth_error_uri {
+  description = "Slack OAuth error URI."
+  default     = ""
+}
+
 variable slack_oauth_redirect_uri {
   description = "Slack OAuth redirect URI."
   default     = ""
+}
+
+variable slack_oauth_success_uri {
+  description = "Slack OAuth redirect URI."
+  default     = "slack://open"
 }
 
 variable slack_signing_secret {

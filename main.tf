@@ -2,7 +2,9 @@ locals {
   secrets {
     SLACK_CLIENT_ID          = "${var.slack_client_id}"
     SLACK_CLIENT_SECRET      = "${var.slack_client_secret}"
+    SLACK_OAUTH_ERROR_URI    = "${var.slack_oauth_error_uri}"
     SLACK_OAUTH_REDIRECT_URI = "${var.slack_oauth_redirect_uri}"
+    SLACK_OAUTH_SUCCESS_URI  = "${var.slack_oauth_success_uri}"
     SLACK_SIGNING_SECRET     = "${var.slack_signing_secret}"
     SLACK_SIGNING_VERSION    = "${var.slack_signing_version}"
     SLACK_TOKEN              = "${var.slack_token}"
