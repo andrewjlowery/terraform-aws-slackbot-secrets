@@ -64,7 +64,7 @@ variable secret_rotation_rules {
 }
 
 variable secret_tags {
-  description = "SecretsManager secret tags"
+  description = "SecretsManager secret tags."
   type        = "map"
   default     = {}
 }
