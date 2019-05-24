@@ -57,12 +57,6 @@ variable secret_rotation_lambda_arn {
   default     = ""
 }
 
-variable secret_rotation_rules {
-  description = "SecretsManager secret rotation configuration."
-  type        = "list"
-  default     = []
-}
-
 variable secret_tags {
   description = "SecretsManager secret tags."
   type        = "map"
