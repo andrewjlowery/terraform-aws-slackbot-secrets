@@ -1,5 +1,5 @@
 locals {
-  secrets {
+  secrets = {
     SLACK_CLIENT_ID          = "${var.slack_client_id}"
     SLACK_CLIENT_SECRET      = "${var.slack_client_secret}"
     SLACK_OAUTH_ERROR_URI    = "${var.slack_oauth_error_uri}"
