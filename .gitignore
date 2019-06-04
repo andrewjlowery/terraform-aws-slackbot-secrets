@@ -8,5 +8,5 @@
 # .tfvars files
 *.tfvars
 
-**/build/
-**/dist/
+.docker/
+*.zip
