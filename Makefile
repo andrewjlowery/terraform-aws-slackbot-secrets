@@ -1,30 +1,28 @@
-# Project
 runtime   := nodejs10.x
 name      := slackbot-secrets
-release   := $(shell git describe --tags)
-build     := $(name)-$(release)
-builddir  := .docker
-buildfile := $(builddir)/$(build)
-distfile  := $(build).zip
+build     := $(shell git describe --tags)
 
-# Docker Build
-image := amancevice/$(name)
-digest = $(shell cat $(buildfile))
+image   := amancevice/$(name)
+iidfile := .docker/$(build)
+digest   = $(shell cat $(iidfile))
 
-$(distfile): $(buildfile)
-	docker run --rm $(digest) cat /var/task/package.zip > $@
+$(name)-$(build).zip: main.tf outputs.tf variables.tf | $(iidfile)
+	zip $@ $?
 
-$(buildfile): | $(builddir)
+$(iidfile): | .docker
 	docker build \
 	--build-arg RUNTIME=$(runtime) \
 	--iidfile $@ \
-	--tag $(image):$(release) .
+	--tag $(image):$(build) .
 
-$(builddir):
+.docker:
 	mkdir -p $@
 
-.PHONY: clean
+.PHONY: shell clean
+
+shell: | $(iidfile)
+	docker run --rm -it $(digest) /bin/bash
 
 clean:
-	docker image rm -f $(image) $(shell sed G $(builddir)/*)
-	rm -rf $(builddir) *.zip
+	docker image rm -f $(image) $(shell sed G .docker/*)
+	rm -rf .docker $(name)*.zip
