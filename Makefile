@@ -17,8 +17,8 @@ all: .docker/$(build)
 	--tag amancevice/$(name):$(build) .
 
 clean:
-	docker image rm -f $(shell awk {print} .docker/*)
-	rm -rf .docker
+	-docker image rm -f $(shell awk {print} .docker/*)
+	-rm -rf .docker
 
 shell: .docker/$(build)
 	docker run --rm -it $(digest) /bin/bash
