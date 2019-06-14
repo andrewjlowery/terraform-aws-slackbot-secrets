@@ -1,28 +1,24 @@
-runtime   := nodejs10.x
-name      := slackbot-secrets
-build     := $(shell git describe --tags)
+name    := slackbot-secrets
+runtime := nodejs10.x
+build   := $(shell git describe --tags --always)
+digest   = $(shell cat .docker/$(build))
 
-image   := amancevice/$(name)
-iidfile := .docker/$(build)
-digest   = $(shell cat $(iidfile))
+.PHONY: all clean shell
 
-$(name)-$(build).zip: main.tf outputs.tf variables.tf | $(iidfile)
-	zip $@ $?
-
-$(iidfile): | .docker
-	docker build \
-	--build-arg RUNTIME=$(runtime) \
-	--iidfile $@ \
-	--tag $(image):$(build) .
+all: .docker/$(build)
 
 .docker:
 	mkdir -p $@
 
-.PHONY: shell clean
-
-shell: | $(iidfile)
-	docker run --rm -it $(digest) /bin/bash
+.docker/$(build): | .docker
+	docker build \
+	--build-arg RUNTIME=$(runtime) \
+	--iidfile $@ \
+	--tag amancevice/$(name):$(build) .
 
 clean:
-	docker image rm -f $(image) $(shell sed G .docker/*)
-	rm -rf .docker $(name)*.zip
+	docker image rm -f $(shell awk {print} .docker/*)
+	rm -rf .docker
+
+shell: .docker/$(build)
+	docker run --rm -it $(digest) /bin/bash
