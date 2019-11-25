@@ -29,7 +29,7 @@ variable kms_key_policy {
 
 variable kms_key_tags {
   description = "KMS Key tags."
-  type        = "map"
+  type        = map
   default     = {}
 }
 
@@ -59,13 +59,13 @@ variable secret_rotation_lambda_arn {
 
 variable secret_tags {
   description = "SecretsManager secret tags."
-  type        = "map"
+  type        = map
   default     = {}
 }
 
 variable secrets {
   description = "Additional SecretsManager secrets."
-  type        = "map"
+  type        = map
   default     = {}
 }
 
