@@ -1,7 +1,6 @@
-ARG RUNTIME=nodejs10.x
+ARG TERRAFORM=latest
 
-FROM lambci/lambda:build-${RUNTIME}
-COPY --from=hashicorp/terraform:0.12.2 /bin/terraform /bin/
+FROM hashicorp/terraform:${TERRAFORM}
 COPY . .
 ARG AWS_DEFAULT_REGION=us-east-1
 RUN terraform init

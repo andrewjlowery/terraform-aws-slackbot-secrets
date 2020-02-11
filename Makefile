@@ -1,24 +1,30 @@
-name    := slackbot-secrets
-runtime := nodejs10.x
-build   := $(shell git describe --tags --always)
-digest   = $(shell cat .docker/$(build))
+TERRAFORM := latest
+BUILD     := $(shell git describe --tags --always)
 
-.PHONY: all clean shell
+.PHONY: default clean clobber shell test
 
-all: .docker/$(build)
+default: test
 
 .docker:
 	mkdir -p $@
 
-.docker/$(build): | .docker
+.docker/$(BUILD): | .docker
 	docker build \
-	--build-arg RUNTIME=$(runtime) \
-	--iidfile $@ \
-	--tag amancevice/$(name):$(build) .
+	--build-arg RUNTIME=$(RUNTIME) \
+	--build-arg TERRAFORM=$(TERRAFORM) \
+	--iidfile $@@$(TIMESTAMP) \
+	--tag amancevice/slackbot-slash-command:$(BUILD) \
+	.
+	cp $@@$(TIMESTAMP) $@
 
 clean:
-	-docker image rm -f $(shell awk {print} .docker/*)
-	-rm -rf .docker
+	-rm -rf .docker/$(BUILD)
 
-shell: .docker/$(build)
-	docker run --rm -it $(digest) /bin/bash
+clobber: | .docker
+	-awk {print} .docker/* 2> /dev/null | uniq | xargs docker image rm --force
+	-rm -rf .docker node_modules
+
+test: .docker/$(BUILD)
+
+shell: .docker/$(BUILD)
+	docker run --rm -it --entrypoint sh $(shell cat $<)
