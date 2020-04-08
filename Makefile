@@ -1,30 +1,26 @@
+REPO      := amancevice/slackbot-secrets
 TERRAFORM := latest
 BUILD     := $(shell git describe --tags --always)
 
-.PHONY: default clean clobber shell test
+.PHONY: default clean clobber shell
 
-default: test
+default: .docker/$(BUILD)
 
 .docker:
 	mkdir -p $@
 
 .docker/$(BUILD): | .docker
 	docker build \
-	--build-arg RUNTIME=$(RUNTIME) \
 	--build-arg TERRAFORM=$(TERRAFORM) \
-	--iidfile $@@$(TIMESTAMP) \
-	--tag amancevice/slackbot-slash-command:$(BUILD) \
+	--iidfile $@ \
+	--tag $(REPO) \
 	.
-	cp $@@$(TIMESTAMP) $@
 
 clean:
-	-rm -rf .docker/$(BUILD)
+	rm -rf .docker
 
-clobber: | .docker
-	-awk {print} .docker/* 2> /dev/null | uniq | xargs docker image rm --force
-	-rm -rf .docker node_modules
-
-test: .docker/$(BUILD)
+clobber: clean
+	docker image ls $(REPO) --quiet | uniq | xargs docker image rm --force
 
 shell: .docker/$(BUILD)
-	docker run --rm -it --entrypoint sh $(shell cat $<)
+	docker run --rm -it --entrypoint sh $$(cat $<)

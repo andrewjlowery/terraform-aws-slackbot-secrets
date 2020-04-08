@@ -24,12 +24,12 @@ variable kms_key_description {
 
 variable kms_key_policy {
   description = "KMS key policy JSON document"
-  default     = ""
+  default     = null
 }
 
 variable kms_key_tags {
   description = "KMS Key tags"
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
@@ -59,13 +59,13 @@ variable secret_rotation_lambda_arn {
 
 variable secret_tags {
   description = "SecretsManager secret tags"
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
 variable secrets {
   description = "Additional SecretsManager secrets"
-  type        = map
+  type        = map(string)
   default     = {}
 }
 
@@ -79,12 +79,12 @@ variable slack_client_secret {
 
 variable slack_oauth_error_uri {
   description = "Slack OAuth error URI"
-  default     = ""
+  default     = null
 }
 
 variable slack_oauth_redirect_uri {
   description = "Slack OAuth redirect URI"
-  default     = ""
+  default     = null
 }
 
 variable slack_oauth_success_uri {

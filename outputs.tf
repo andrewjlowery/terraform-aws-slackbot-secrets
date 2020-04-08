@@ -1,24 +1,20 @@
 output kms_key_alias {
-  description = "KMS key alias."
-  value       = aws_kms_alias.key_alias.name
+  description = "KMS key alias"
+  value       = aws_kms_alias.key_alias
 }
 
-output kms_key_arn {
-  description = "KMS key ARN."
-  value       = aws_kms_key.key.arn
+output kms_key {
+  description = "KMS key"
+  value       = aws_kms_key.key
 }
 
-output kms_key_id {
-  description = "KMS key ID."
-  value       = aws_kms_key.key.key_id
+output secret {
+  description = "Slackbot SecretsManager secret"
+  value       = aws_secretsmanager_secret.slack_secret
 }
 
-output secret_arn {
-  description = "Slackbot SecretsManager secret ARN."
-  value       = aws_secretsmanager_secret.slack_secret.arn
-}
-
-output secret_name {
-  description = "Slackbot SecretsManager secret name."
-  value       = aws_secretsmanager_secret.slack_secret.name
+output secret_version {
+  description = "Slackbot SecretsManager secret version"
+  value       = aws_secretsmanager_secret_version.slack_secret_version
+  sensitive   = true
 }
