@@ -15,6 +15,6 @@ output secret {
 
 output secret_version {
   description = "Slackbot SecretsManager secret version"
-  value       = aws_secretsmanager_secret_version.slack_secret_version
   sensitive   = true
+  value       = aws_secretsmanager_secret_version.slack_secret_version
 }

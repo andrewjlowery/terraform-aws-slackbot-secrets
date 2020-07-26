@@ -39,7 +39,6 @@ resource aws_secretsmanager_secret slack_secret {
   kms_key_id              = aws_kms_key.key.key_id
   name                    = var.secret_name
   recovery_window_in_days = var.secret_recovery_window_in_days
-  rotation_lambda_arn     = var.secret_rotation_lambda_arn
   tags                    = var.secret_tags
 }
 

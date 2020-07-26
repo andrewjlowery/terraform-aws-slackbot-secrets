@@ -52,11 +52,6 @@ variable secret_recovery_window_in_days {
   default     = 30
 }
 
-variable secret_rotation_lambda_arn {
-  description = "SecretsManager secret Lambda rotation ARN"
-  default     = ""
-}
-
 variable secret_tags {
   description = "SecretsManager secret tags"
   type        = map(string)
