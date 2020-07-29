@@ -1,7 +1,7 @@
 # Slackbot Secrets
 
 [![terraform](https://img.shields.io/github/v/tag/amancevice/terraform-aws-slackbot-secrets?color=62f&label=version&logo=terraform&style=flat-square)](https://registry.terraform.io/modules/amancevice/serverless-pypi/aws)
-[![build](https://img.shields.io/github/workflow/status/amancevice/terraform-aws-slackbot-secrets/Test?logo=github&style=flat-square)](https://github.com/amancevice/terraform-aws-slackbot-secrets/actions)
+[![build](https://img.shields.io/github/workflow/status/amancevice/terraform-aws-slackbot-secrets/validate?logo=github&style=flat-square)](https://github.com/amancevice/terraform-aws-slackbot-secrets/actions)
 
 Add-on for [amancevice/slackbot/aws](https://github.com/amancevice/terraform-aws-slackbot) terraform module to add required SecreteManager secret to support the slackbot module.
 
