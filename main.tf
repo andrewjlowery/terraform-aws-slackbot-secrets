@@ -25,7 +25,7 @@ resource aws_kms_key key {
   enable_key_rotation     = var.kms_key_enable_key_rotation
   is_enabled              = var.kms_key_is_enabled
   key_usage               = var.kms_key_usage
-  policy                  = var.kms_key_policy
+  policy                  = var.kms_key_policy_document
   tags                    = var.kms_key_tags
 }
 

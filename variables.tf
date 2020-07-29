@@ -22,7 +22,7 @@ variable kms_key_description {
   default     = "Slackbot key"
 }
 
-variable kms_key_policy {
+variable kms_key_policy_document {
   description = "KMS key policy JSON document"
   default     = null
 }
