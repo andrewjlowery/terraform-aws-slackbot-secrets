@@ -33,7 +33,6 @@ module slackbot_secret {
   slack_signing_secret = "<slack-signing-secret>"
   slack_token          = "<slack-token>"
 
-
   # Optional
 
   kms_key_deletion_window_in_days = 30
