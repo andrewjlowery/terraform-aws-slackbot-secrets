@@ -1,8 +1,8 @@
-.terraform:
-	terraform init
-
 .PHONY: validate
 
 validate: | .terraform
 	terraform fmt -check
-	terraform validate
+	AWS_REGION=us-east-1 terraform validate
+
+.terraform:
+	terraform init

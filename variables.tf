@@ -1,67 +1,11 @@
-variable "kms_key_alias" {
-  description = "KMS Key alias"
-}
-
-variable "kms_key_deletion_window_in_days" {
-  description = "KMS key deletion window"
-  default     = 30
-}
-
-variable "kms_key_enable_key_rotation" {
-  description = "KMS Key rotation flag"
-  default     = false
-}
-
-variable "kms_key_is_enabled" {
-  description = "KMS Key enabled flag"
-  default     = true
-}
-
-variable "kms_key_description" {
-  description = "KMS key description"
-  default     = "Slackbot key"
-}
-
-variable "kms_key_policy_document" {
-  description = "KMS key policy JSON document"
-  default     = null
-}
-
-variable "kms_key_tags" {
-  description = "KMS Key tags"
-  type        = map(string)
-  default     = {}
-}
-
-variable "kms_key_usage" {
-  description = "Usage of Slackbot KMS Key"
-  default     = "ENCRYPT_DECRYPT"
-}
-
-variable "secret_description" {
-  description = "SecretsManager secret description"
-  default     = "Slackbot secrets"
-}
-
-variable "secret_name" {
-  description = "SecretsManager secret name"
-}
-
-variable "secret_recovery_window_in_days" {
-  description = "SecretsManager secret recovery window"
-  default     = 30
-}
-
-variable "secret_tags" {
-  description = "SecretsManager secret tags"
-  type        = map(string)
-  default     = {}
-}
-
-variable "secrets" {
+variable "additional_secrets" {
   description = "Additional SecretsManager secrets"
   type        = map(string)
   default     = {}
+}
+
+variable "secret" {
+  description = "SecretsManager secret"
 }
 
 variable "slack_client_id" {

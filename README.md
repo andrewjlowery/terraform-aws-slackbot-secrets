@@ -11,21 +11,18 @@ _You should NEVER store your secrets in plaintext or deploy with a remote state 
 ## Usage
 
 ```terraform
-module slackbot {
+module "slackbot" {
   source  = "amancevice/slackbot/aws"
   version = "~> 18.2"
   # …
 }
 
-module slackbot_secret {
+module "slackbot_secret" {
   source  = "amancevice/slackbot-secrets/aws"
-  version = "~> 5.0"
+  version = "~> 7.0"
 
   # Required…
-
-  # Name your AWS resources
-  kms_key_alias = "alias/slack/my-kms-key-alias"
-  secret_name   = "slack/my-secret-name"
+  secret = module.slackbot.secret
 
   # Provided by Slack
   slack_client_id      = "<slack-oauth2-client-id>"
