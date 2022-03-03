@@ -13,7 +13,7 @@ _You should NEVER store your secrets in plaintext or deploy with a remote state 
 ```terraform
 module "slackbot" {
   source  = "amancevice/slackbot/aws"
-  version = "~> 18.2"
+  version = "~> 23.1"
   # …
 }
 
