@@ -22,4 +22,9 @@ resource "aws_secretsmanager_secret_version" "secret_version" {
     SLACK_SIGNING_VERSION    = var.slack_signing_version
     SLACK_TOKEN              = var.slack_token
   }, var.additional_secrets))
+  lifecycle {
+    ignore_changes = [
+      secret_string
+    ]
+  }
 }
